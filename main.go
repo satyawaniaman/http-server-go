@@ -35,7 +35,6 @@ func main(){
 		cacheMutex.Unlock()
 		w.Write([]byte("User Created"))
 	})
-	http.ListenAndServe(":8080",mux)
 	mux.HandleFunc("GET /users/{id}",func(w http.ResponseWriter,r *http.Request){
 		id,err:= strconv.Atoi(r.PathValue("id"))
 		if err!= nil{
@@ -74,4 +73,5 @@ func main(){
 		w.WriteHeader(http.StatusNoContent)
 		w.Write([]byte("User Deleted"))
 	})
+	http.ListenAndServe(":8080",mux)
 }
